@@ -27,7 +27,7 @@ public class Simulation {
 
     public void step() {
         if(!temp.isEmpty()) {
-            entities.addAll(entities);
+            entities.addAll(temp);
             temp.clear();
         }
 
@@ -60,7 +60,7 @@ public class Simulation {
         return buffer.array();
     }
 
-    public void addNewEntity() {
-        temp.add(new Entity(10, 10));
+    public void addNewEntity(float x, float y) {
+        temp.add(new Entity(x, y));
     }
 }

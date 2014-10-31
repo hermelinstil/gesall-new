@@ -90,7 +90,8 @@ public class Server extends Network {
     }
 
     private void newInput(String input) {
-        simulation.addNewEntity();
+        String[] coords = input.split(" ");
+        simulation.addNewEntity(Float.parseFloat(coords[0]), Float.parseFloat(coords[1]));
     }
 
     @Override

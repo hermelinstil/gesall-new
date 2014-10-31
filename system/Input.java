@@ -1,5 +1,6 @@
 package system;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -17,7 +18,9 @@ public abstract class Input {
 
     private static HashSet<Integer> keyState = new HashSet<Integer>();
     private static Point mousePosition = new Point();
-    private static boolean mouseIsDown = false;
+
+    private static boolean leftMouseIsDown = false;
+    private static boolean rightMouseIsDown = false;
 
     private static boolean registred = false;
 
@@ -40,8 +43,11 @@ public abstract class Input {
         return mousePosition;
     }
 
-    public static boolean isMouseDown() {
-        return mouseIsDown;
+    public static boolean isLeftMouseIsDown() {
+        return leftMouseIsDown;
+    }
+    public static boolean isRightMouseIsDown() {
+        return rightMouseIsDown;
     }
 
     private static class MouseInput extends MouseAdapter {
@@ -51,13 +57,26 @@ public abstract class Input {
         }
 
         @Override
+        public void mouseDragged(MouseEvent e) {
+            mousePosition.setLocation(e.getX(), e.getY());
+        }
+
+        @Override
         public void mousePressed(MouseEvent e) {
-            mouseIsDown = true;
+            if(SwingUtilities.isLeftMouseButton(e)) {
+                leftMouseIsDown = true;
+            } else if(SwingUtilities.isRightMouseButton(e)) {
+                rightMouseIsDown = true;
+            }
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            mouseIsDown = false;
+            if(SwingUtilities.isLeftMouseButton(e)) {
+                leftMouseIsDown = false;
+            } else if(SwingUtilities.isRightMouseButton(e)) {
+                rightMouseIsDown = false;
+            }
         }
     }
 

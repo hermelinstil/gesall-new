@@ -4,6 +4,7 @@ import simulation.Entity;
 import system.Input;
 import system.Renderer;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -43,12 +44,12 @@ public class Client extends Network implements Runnable {
 
     @Override
     public void run() {
-
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if(Input.isMouseDown()) {
-                    send("I");
+                if(Input.isLeftMouseIsDown()) {
+                    String input = "I" + Input.getMousePosition().getX() + " " + Input.getMousePosition().getY();
+                    send(input);
                 }
             }
         }, 0, 1000);
