@@ -3,6 +3,7 @@ package simulation;
 import system.Renderer;
 
 import java.io.Serializable;
+import java.nio.ByteBuffer;
 
 /**
  * Created by molotov on 10/31/14.
@@ -42,5 +43,12 @@ public class Entity implements Serializable {
 
     public Vector getPosition() {
         return position;
+    }
+
+    public byte[] toByteArray() {
+        return ByteBuffer.allocate(8)
+                    .putFloat(position.x)
+                    .putFloat(position.y)
+                    .array();
     }
 }

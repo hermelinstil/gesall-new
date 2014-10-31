@@ -3,6 +3,7 @@ package simulation;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
 /**
@@ -36,7 +37,7 @@ public class Simulation {
     }
 
     public byte[] getState() {
-        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+        /*ByteArrayOutputStream bao = new ByteArrayOutputStream();
         ObjectOutputStream oos = null;
         try {
             oos = new ObjectOutputStream(bao);
@@ -48,7 +49,15 @@ public class Simulation {
         }
 
         System.out.println("Size of byte array: " + bao.toByteArray().length);
-        return bao.toByteArray();
+        return bao.toByteArray();*/
+
+        ByteBuffer buffer = ByteBuffer.allocate(entities.size() * 8);
+
+        for(Entity e : entities) {
+            buffer.put(e.toByteArray());
+        }
+
+        return buffer.array();
     }
 
     public void addNewEntity() {

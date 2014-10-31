@@ -4,6 +4,7 @@ import simulation.Entity;
 import system.Input;
 import system.Renderer;
 
+import java.awt.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -11,6 +12,7 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -49,14 +51,14 @@ public class Client extends Network implements Runnable {
                     send("I");
                 }
             }
-        }, 0, 10);
+        }, 0, 1000);
 
         super.run();
     }
 
     @Override
     public void handleData(DatagramPacket data) {
-        ByteArrayInputStream bis = new ByteArrayInputStream(data.getData());
+        /*ByteArrayInputStream bis = new ByteArrayInputStream(data.getData());
         try {
             ObjectInputStream ois = new ObjectInputStream(bis);
             ArrayList<Entity> list = (ArrayList<Entity>) ois.readObject ();
@@ -65,7 +67,17 @@ public class Client extends Network implements Runnable {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        }*/
+        byte[] byteArray = data.getData();
+        ArrayList<Entity> list = new ArrayList<Entity>(byteArray.length / 8);
+
+        ByteBuffer buffer = ByteBuffer.wrap(byteArray);
+
+        while(buffer.hasRemaining()) {
+            list.add(new Entity(buffer.getFloat(), buffer.getFloat()));
         }
+
+        renderer.render(list);
     }
 
     @Override
