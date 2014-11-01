@@ -69,6 +69,7 @@ public class Client extends Network implements Runnable {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }*/
+        long startTime = System.currentTimeMillis();
         byte[] byteArray = data.getData();
         ArrayList<Entity> list = new ArrayList<Entity>(byteArray.length / 8);
 
@@ -79,6 +80,8 @@ public class Client extends Network implements Runnable {
         }
 
         renderer.render(list);
+
+        System.out.println(System.currentTimeMillis() - startTime);
     }
 
     @Override
@@ -92,5 +95,4 @@ public class Client extends Network implements Runnable {
             e.printStackTrace();
         }
     }
-
 }

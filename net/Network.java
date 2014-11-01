@@ -44,7 +44,7 @@ public abstract class Network implements Runnable {
 
     @Override
     public void run() {
-        byte[] byteArray = new byte[1024];
+        byte[] byteArray = new byte[8192];
         DatagramPacket packet = new DatagramPacket(byteArray, byteArray.length);
 
         while(true) {

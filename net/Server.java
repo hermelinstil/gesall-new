@@ -38,7 +38,7 @@ public class Server extends Network {
                 simulation.step();
                 broadcast(simulation.getState());
             }
-        }, 0, 20);
+        }, 0, 10);
 
         super.run();
 

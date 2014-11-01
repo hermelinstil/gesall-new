@@ -1,10 +1,8 @@
 package simulation;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by molotov on 10/29/14.
@@ -15,14 +13,16 @@ public class Simulation {
     private ArrayList<Entity> entities;
     private ArrayList<Entity> temp;
 
+    public static Random random = new Random();
 
     public Simulation() {
         entities = new ArrayList<Entity>();
         temp = new ArrayList<Entity>();
 
-        entities.add(new Entity(10, 5));
-        entities.add(new Entity(60, 400));
-        entities.add(new Entity(800, 50));
+        /*for(int i = 0; i < 10; ++i) {
+            entities.add(new Entity(random.nextInt(1230), random.nextInt(670)));
+        }*/
+
     }
 
     public void step() {
@@ -56,6 +56,8 @@ public class Simulation {
         for(Entity e : entities) {
             buffer.put(e.toByteArray());
         }
+
+
 
         return buffer.array();
     }

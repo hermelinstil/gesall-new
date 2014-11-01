@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Stavling on 2014-10-22.
@@ -19,6 +20,8 @@ public class Renderer {
 
     private BufferStrategy bufferStrategy;
 
+    private Random random = new Random();
+
     public Renderer(JFrame frame) {
         this.frame = frame;
         bufferStrategy = initGUI();
@@ -27,13 +30,15 @@ public class Renderer {
     public void render(ArrayList<Entity> renderList) {
         Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
         g.clearRect(0, 0, WIDTH, HEIGHT);
-        g.setColor(Color.BLACK);
+        g.setColor(Color.black);
 
         for(Entity entity : renderList) {
+            //g.setColor(new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
             g.fillOval((int)entity.getPosition().x,
                        (int)entity.getPosition().y,
                         50,
                         50);
+
         }
 
         Toolkit.getDefaultToolkit().sync();
