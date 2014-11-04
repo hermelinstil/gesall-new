@@ -30,7 +30,7 @@ public abstract class Network implements Runnable {
 
         try {
             client = new Client(renderer,
-                       args[0],                  //host IP
+                       args[0],                         //host IP
                        Integer.parseInt(args[1]),       //localport
                        Integer.parseInt(args[2]));      //remotePort
         } catch (ArrayIndexOutOfBoundsException a) {}
@@ -53,7 +53,6 @@ public abstract class Network implements Runnable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             handleData(packet);
         }
     }

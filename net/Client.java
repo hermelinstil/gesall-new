@@ -15,6 +15,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -69,19 +70,19 @@ public class Client extends Network implements Runnable {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }*/
-        long startTime = System.currentTimeMillis();
         byte[] byteArray = data.getData();
+
         ArrayList<Entity> list = new ArrayList<Entity>(byteArray.length / 8);
 
         ByteBuffer buffer = ByteBuffer.wrap(byteArray);
 
         while(buffer.hasRemaining()) {
-            list.add(new Entity(buffer.getFloat(), buffer.getFloat()));
+            float x = buffer.getFloat(); float y = buffer.getFloat();
+            if(x != 0 && y != 0) // kan inte rendera ut på plats 0, 0 (fullösning) eftersom paketet alltid är fullt... hur trimmar man den?
+                list.add(new Entity(x, y));
         }
 
         renderer.render(list);
-
-        System.out.println(System.currentTimeMillis() - startTime);
     }
 
     @Override

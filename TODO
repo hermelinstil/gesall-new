@@ -1,3 +1,6 @@
 Skicka statet på ett bättre sätt, arraylisten som bytearray blev asstor!!!!!
 
 BIT-MANIPULATION + BARA SKICKA DIFF (förutom i början förstås)
+
+fixa inputen!
+och paketet är alltid stort, hur ska den trimmas. Det är därför som det finns 'en' prick i vänstra hörnet konstant. Läggs till i avläsningen från servern.

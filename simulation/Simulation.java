@@ -19,9 +19,9 @@ public class Simulation {
         entities = new ArrayList<Entity>();
         temp = new ArrayList<Entity>();
 
-        /*for(int i = 0; i < 10; ++i) {
+        for(int i = 0; i < 200; ++i) {
             entities.add(new Entity(random.nextInt(1230), random.nextInt(670)));
-        }*/
+        }
 
     }
 
